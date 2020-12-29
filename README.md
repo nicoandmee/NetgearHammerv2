@@ -19,6 +19,8 @@
 - R9000 Router
 - ProSAFE XS728T Switch
 - ProSAFE XS748T Switch
+- ReadyNAS 628X
+- ReadyNAS 3200
 
 Support for more products can be added easily.
 

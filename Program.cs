@@ -20,7 +20,7 @@ namespace NetgearHammerv2 {
             Console.WriteLine ("Enter desired number of attempts (ex. 200):" + Environment.NewLine);
             var attemptsCount = Console.ReadLine ();
 
-            Console.WriteLine ("Running through " + attemptsCount.ToString () + " iterations, now select your desired prodcut...." + Environment.NewLine + " (1) ReadyNAS RNDP6000" + " (2) ReadyNAS 516" + " (3) ReadyNAS 716X" + " (4) R8000 Router" + " (5) R8500 Router" + " (6) A6210 WiFi USB Adapter" + " (7) ProSAFE M7300-24XF Switch" + " (8) ReadyNAS 526X" + " (9) ReadyNAS 528X" + " (10) R9000 Router" + " (11) ProSAFE XS728T Switch" + " (12) ProSAFE XS748T Switch MSRP 3,000$" + Environment.NewLine);
+            Console.WriteLine ("Running through " + attemptsCount.ToString () + " iterations, now select your desired prodcut...." + Environment.NewLine + " (1) ReadyNAS RNDP6000" + " (2) ReadyNAS 516" + " (3) ReadyNAS 716X" + " (4) R8000 Router" + " (5) R8500 Router" + " (6) A6210 WiFi USB Adapter" + " (7) ProSAFE M7300-24XF Switch" + " (8) ReadyNAS 526X" + " (9) ReadyNAS 528X" + " (10) R9000 Router" + " (11) ProSAFE XS728T Switch" + " (12) ProSAFE XS748T Switch" + " (13) ReadyNAS 3312" + " (14) ReadyNAS RN626X00" + Environment.NewLine);
             var productChoice = Console.ReadLine ();
 
             Console.WriteLine ("Enter netgear email address: ");
@@ -106,30 +106,36 @@ namespace NetgearHammerv2 {
             await page.WaitForSelectorAsync ("#MainContent_serial");
 
             string[] days = {
-                "01",
-                "05",
+                "08",
+                "09",
+                "10",
                 "11",
+                "12",
+                "13",
+                "14",
                 "15",
                 "16",
                 "17",
                 "18",
                 "19",
                 "20",
+                "21",
+                "22",
+                "23",
+                "24",
+                "25",
+                "26",
+                "27",
+                "28",
+                "29",
+                "30",
+                "31",
             };
             string[] months = {
-                "01",
-                "02",
-                "03",
-                "04",
-                "05",
-                "06",
-                "07",
-                "08",
-                "09",
+                "10",
             };
             string[] years = {
-                "2019",
-                "2018",
+                "2020",
             };
 
             Random rand = new Random();
@@ -143,7 +149,7 @@ namespace NetgearHammerv2 {
             await page.SelectAsync ("#MainContent_ddlYear", $"{years[yearIndex]}");
 
             await page.ClickAsync ("#MainContent_btnSubmit");
-            await page.WaitForTimeoutAsync(7500);
+            await page.WaitForTimeoutAsync(3500);
 
             var result = await page.EvaluateExpressionAsync<dynamic>("((document.querySelector('#MainContent_lblError,.activeServerError') || {}).innerText || '').trim();");
 
@@ -185,7 +191,10 @@ namespace NetgearHammerv2 {
                     return "49E" + RandomNum (3) + "5T" + RandomNum (5);
                 case "12":
                     return "4M0" + RandomNum (3) + "5R" + RandomNum(5);
-
+                case "13":
+                    return "4US" + RandomNum(3) + "ER" + RandomNum(5);
+                case "14":
+                    return "4MD" + RandomNum(3) + "EC" + RandomNum(5);
                 default:
                     return "Invalid type specified.";
 
