@@ -20,7 +20,7 @@
 - ProSAFE XS728T Switch
 - ProSAFE XS748T Switch
 - ReadyNAS 628X
-- ReadyNAS 3200
+- ReadyNAS 3312
 
 Support for more products can be added easily.
 
