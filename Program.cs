@@ -132,7 +132,7 @@ namespace NetgearHammerv2 {
                 "31",
             };
             string[] months = {
-                "02",
+                "03",
             };
             string[] years = {
                 "2021",
