@@ -50,11 +50,11 @@ namespace NetgearHammerv2 {
 
             await page.SetUserAgentAsync ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36");
             await page.GoToAsync ("https://accounts.netgear.com/login?redirectUrl=https:%2F%2Fwww.netgear.com%2Fmynetgear%2Fregistration%2Flogin.aspx");
-            await page.WaitForSelectorAsync ("#\\_ipEmlLgn");
+            await page.WaitForSelectorAsync ('input[name="email"]');
 
-            await page.TypeAsync ("#\\_ipEmlLgn", emailAddress);
-            await page.TypeAsync ("#searchinput", password);
-            await page.ClickAsync ("#Login-btn > span");
+            await page.TypeAsync ('input[name="email"]', emailAddress);
+            await page.TypeAsync ('input[name="password"]', password);
+            await page.ClickAsync ('button[type="submit"]');
             await page.WaitForNavigationAsync ();
 
             StringBuilder validserials = new StringBuilder ();
@@ -102,8 +102,8 @@ namespace NetgearHammerv2 {
             string productInfo = "None";
 
             try {
-            await page.GoToAsync ("https://www.netgear.com/mynetgear/portal/myRegister.aspx");
-            await page.WaitForSelectorAsync ("#MainContent_serial");
+            await page.GoToAsync ("https://my.netgear.com/register.aspx");
+            await page.WaitForSelectorAsync ("input#MainContent_serialNumberInput");
 
             string[] days = {
                 "08",
@@ -143,7 +143,7 @@ namespace NetgearHammerv2 {
             int monthIndex = rand.Next(months.Length);
             int yearIndex = rand.Next(years.Length);
 
-            await page.TypeAsync ("#MainContent_serial", serialNumber);
+            await page.TypeAsync ("input#MainContent_serialNumberInput", serialNumber);
             await page.SelectAsync ("#MainContent_ddlMonth", $"{months[monthIndex]}");
             await page.SelectAsync ("#MainContent_ddlDay", $"{days[dayIndex]}");
             await page.SelectAsync ("#MainContent_ddlYear", $"{years[yearIndex]}");
@@ -151,11 +151,10 @@ namespace NetgearHammerv2 {
             await page.ClickAsync ("#MainContent_btnSubmit");
             await page.WaitForTimeoutAsync(3500);
 
-            var result = await page.EvaluateExpressionAsync<dynamic>("((document.querySelector('#MainContent_lblError,.activeServerError') || {}).innerText || '').trim();");
+            var result = await page.EvaluateExpressionAsync<dynamic>("((document.querySelector('#MainContent_errorStatus,.activeServerError') || {}).innerText || '').trim();");
 
             if (result.IndexOf ("not valid") > 0 || result.IndexOf("invalid") > 0 || result.indexOf("already registered") > 0) {
                 Console.WriteLine ($"[-] Invalid Serial: {serialNumber}");
-                await page.ClickAsync ("a.popup-close");
             }
             } catch (Exception e) {
                 Console.WriteLine(e.Message);
