@@ -29,7 +29,9 @@ Support for more products can be added easily.
 ## Usage
 
 To run the tool, you have two options:
+
 - Clone this repo & build solution from sauce in VS
 - Download a precompiled release binary (spooky)
 
-Output will be saved in `output.csv` file in the working directory where the program is executed. Screenshots of each serial with the associated product details will also be saved as `{serial}.png`.
+Output will be saved in `output.csv` file in the working directory where the program is executed. Screenshots of each
+serial with the associated product details will also be saved as `{serial}.png`.

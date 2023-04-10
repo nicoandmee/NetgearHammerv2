@@ -48,11 +48,11 @@ namespace NetgearHammerv2 {
 
             await page.SetUserAgentAsync ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36");
             await page.GoToAsync ("https://accounts.netgear.com/login?redirectUrl=https:%2F%2Fwww.netgear.com%2Fmynetgear%2Fregistration%2Flogin.aspx");
-            await page.WaitForSelectorAsync ('input[name="email"]');
+            await page.WaitForSelectorAsync ("input[name='email']");
 
-            await page.TypeAsync ('input[name="email"]', emailAddress);
-            await page.TypeAsync ('input[name="password"]', password);
-            await page.ClickAsync ('button[type="submit"]');
+            await page.TypeAsync ("input[name='email']", emailAddress);
+            await page.TypeAsync ("input[name='password']", password);
+            await page.ClickAsync ("button[type='submit']");
             await page.WaitForNavigationAsync ();
 
             StringBuilder validserials = new StringBuilder ();
